@@ -458,6 +458,7 @@ void jukebox_state_copy(struct t_jukebox_state *src, struct t_jukebox_state *dst
     dst->min_song_duration = src->min_song_duration;
     dst->max_song_duration = src->max_song_duration;
     dst->filling = src->filling;
+    dst->autostart = src->autostart;
     struct t_list_node *current = src->queue->head;
     while (current != NULL) {
         list_push(dst->queue, current->key, current->value_i, current->value_p, current->user_data);

@@ -233,7 +233,8 @@ bool jukebox_add_to_queue(struct t_partition_state *partition_state,
 
     // start playback
     mympd_client_queue_status_update(partition_state);
-    if (partition_state->play_state != MPD_STATE_PLAY) {
+    if (partition_state->play_state != MPD_STATE_PLAY &&
+        partition_state->jukebox.autostart == true) {
         MYMPD_LOG_DEBUG(partition_state->name, "Jukebox: start playback");
         mpd_run_play(partition_state->conn);
         if (mympd_check_error_and_recover(partition_state, NULL, "mpd_run_play") == false) {
