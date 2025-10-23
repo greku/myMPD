@@ -83,6 +83,8 @@ bool jukebox_run(struct t_mympd_state *mympd_state, struct t_partition_state *pa
     }
 
     mympd_client_queue_status_update(partition_state);
+    //enable consume mode of MPD for Jukebox to work properly
+    mpd_run_consume_state(partition_state->conn, MPD_CONSUME_ON);
     sdsclear(partition_state->jukebox.last_error);
 
     MYMPD_LOG_DEBUG(partition_state->name, "Jukebox: MPD queue length: %u", partition_state->queue_length);
